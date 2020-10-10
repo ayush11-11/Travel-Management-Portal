@@ -21,7 +21,9 @@ Portal for user to Plan and book tickets accross the world according to covid ca
 
 ![Admin Dashboard Page](https://github.com/ayush11-11/Travel-Management-Portal/blob/master/src/assets/images/AdminDashboard.PNG "Logo Title Text 1")
 
-### For Backend of the Project using Node.js
+
+---
+## For Backend of the Project using Node.js
 
 [**Click Here **](https://github.com/ayush11-11/Travel-mangement-Portal-Backend)
 
