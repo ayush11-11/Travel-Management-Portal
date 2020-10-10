@@ -1,0 +1,92 @@
+import { Component, OnInit,EventEmitter, Input, Output } from '@angular/core';
+import { FormBuilder, Validators, FormGroup  } from '@angular/forms';
+import { UserService } from '../shared/userservice';
+import { User } from '../shared/user'; 
+import {ConfirmRegistraionComponent} from '../confirm-registraion/confirm-registraion.component';
+
+@Component({
+  selector: 'app-registration',
+  templateUrl: './registration.component.html',
+  styleUrls: ['./registration.component.css']
+})
+export class RegistrationComponent implements OnInit {
+  regForm: FormGroup;
+  datasaved = false;
+  massage: string;
+  error:false;
+  update=false;
+   
+ // @Output() formChange = new EventEmitter<regForm>(); 
+  Country: Array<any> = [
+    { name: 'Germany', states: ['Duesseldorf', 'Leinfelden-Echterdingen', 'Eschborn'] },
+    { name: 'Spain', states: ['Barcelona'] },
+    { name: 'USA', states: ['Downers Grove'] },
+    { name: 'Mexico', states: ['Puebla'] },
+    { name: 'China', states: ['Beijing'] },
+  ];
+  State: Array<any>;
+  changeCountry(count) {
+    this.State = this.Country.find(con => con.name == count).states;
+  }
+  Pass:String;
+
+   
+  constructor(private formbuilder: FormBuilder, private userservice: UserService ) { }
+
+  ngOnInit() {
+    this.makeRandom();
+    this.setFormState();
+
+  }
+  setFormState(): void {
+    this.regForm = this.formbuilder.group({
+      LastName: ['', [Validators.required]],
+      FirstName: ['', [Validators.required]],
+      BusinessUnit: ['', [Validators.required]],
+      Title: ['', [Validators.required]],
+      Email:['',[Validators.required]],
+      Telephone:['',[Validators.required]],
+      Address1: ['', [Validators.required]],
+      Address2: [''],
+      Country:['',[Validators.required]],
+      State:[''],
+      Zip:['',[Validators.required]],
+      City:['',[Validators.required]],
+      Password:['this.pass'],
+      id:['']
+      
+     
+     
+    })
+  }
+  makeRandom() {
+    let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890,./;'[]\=-)(*&^%$#@!~`";
+  const lengthOfCode = 8;
+    let text = "";
+    for (let i = 0; i < lengthOfCode; i++) {
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+      this.Pass=text;
+  }
+  
+
+  onSubmit() {
+    
+    let user = this.regForm.value;
+
+    this.createuser(user);
+    this.regForm.reset();
+    this.update=true;
+  }
+  parentuser:User;
+  createuser(user: User) {
+    this.userservice.createuser(user).subscribe(
+      (user) => {
+        this.datasaved = true;
+        this.massage = "User Created";
+       this.userservice.communicate(user);
+      }
+    )
+  }
+   
+}

@@ -1,0 +1,40 @@
+<div class="container">
+  <h2 class="text-secondary text-center">{{ title }}!</h2>
+  <hr />
+ 
+  <div>
+    <h4 class="text-info">Displaying Ticket Details</h4>
+    <div> </div>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Unique Ticket Id</th>
+          <th>Type Request</th>
+          <th>City Travel From</th>
+          <th>City Travel To</th>
+          <th>Passport</th>
+          <th>Project Name</th>
+          <th>Start Date</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let e of ticketdata | paginate: { itemsPerPage: count, currentPage: p }">
+          <td>{{e.ticketId}}</td>
+          <td>{{e.typeRequest}}</td>
+          <td>{{e.cityTravelFrom}}</td>
+          <td>{{e.cityTravelTo}}</td>
+          <td>{{e.passport}}</td>
+          <td>{{e.projectName}}</td>
+          <td>{{e.startDate}}</td>
+          <td>{{e.status}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+ 
+  <!--Including the pagination control.-->
+  <div class="text-right">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>

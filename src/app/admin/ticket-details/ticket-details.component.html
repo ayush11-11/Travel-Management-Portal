@@ -1,0 +1,79 @@
+<mat-toolbar>
+  <!--span>{{service.form.controls['$key'].value?"Modify Employee":"New Employee"}}</span-->
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close" mat-stroked-button  (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+</mat-toolbar>
+<form [formGroup]="service.form" class="normal-form">
+  <!--mat-grid-list cols="2" rowHeight="300px"-->
+    <!--mat-grid-tile-->
+      <div class="controles-container">
+        <mat-form-field>
+        <label>Ticket ID</label>
+        <input  formControlName="ticketId" matInput>
+        </mat-form-field>>
+        <mat-form-field>
+          <label>Type Request</label>
+          <input formControlName="typeRequest" matInput>
+        </mat-form-field>
+        <mat-form-field>
+          <label>priority</label>
+          <input formControlName="priority" matInput >
+        </mat-form-field>
+        <mat-form-field>
+          <label>City Travel To</label>
+          <input formControlName="cityTravelTo" matInput>        
+        </mat-form-field>
+        <mat-form-field>
+          <label>City Travel From</label>
+          <input formControlName="cityTravelFrom" matInput >
+        </mat-form-field>
+        <mat-form-field>
+          <label>Start Date</label>
+          <input formControlName="startDate" matInput >
+        </mat-form-field>
+        <mat-form-field>
+          <label>End Date</label>
+          <input formControlName="endtDate" matInput >
+        </mat-form-field>
+        <mat-form-field>
+          <label>Passport</label>
+          <input formControlName="passport" matInput >
+        </mat-form-field>
+      </div>
+    <!--/mat-grid-tile-->
+    <!--mat-grid-tile-->
+
+      <div class="controles-container">
+        <label>Project Name</label>
+        <mat-form-field>
+          <input formControlName="projectName" matInput >
+        </mat-form-field>
+        <mat-form-field>
+          <label>Expense Borne</label>
+          <input formControlName="expenseBorne" matInput >
+        </mat-form-field>
+        <mat-form-field>
+          <label>Travel Approver By</label>
+          <input formControlName="travelApproverBy" matInput>        
+        </mat-form-field>
+        <mat-form-field>
+          <label>Expected Duration</label>
+          <input formControlName="expectedDuration" matInput >
+        </mat-form-field>
+        <mat-form-field>
+          <label>Upper Bond</label>
+          <input formControlName="upperBond" matInput >
+        </mat-form-field>
+        <mat-form-field>
+          <label>Additional Details</label>
+          <input formControlName="additionalDetails" matInput >
+        </mat-form-field>
+        <mat-form-field>
+          <label>Status</label>
+          <input formControlName="status" matInput >
+        </mat-form-field>
+      </div>
+       
+    <!--/mat-grid-tile-->
+  <!--/mat-grid-list-->
+</form>

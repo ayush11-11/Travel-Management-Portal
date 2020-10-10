@@ -1,0 +1,45 @@
+<app-header (ticketShow)='displayTicket($event)'(dashBoardShow)='displayDashBoard($event)' (ticketListFunc)='displayTicketList($event)' ></app-header>
+<app-ticket *ngIf="raiseticket"></app-ticket>
+<app-ticket-list *ngIf="showticket"></app-ticket-list>
+ 
+  <div class="how-section1"*ngIf="showdashboard">
+    <div class="row">
+        <div class="col-md-6 how-img">
+            <img src="../../../assets/images/images (1).jpg" class="rounded-circle img-fluid" alt=""/>
+        </div>
+        <div class="col-md-6">
+            <h4>Welcome To Nagarro Travel Portal</h4>
+                        <h4 class="subheading">Manage  Your Travel</h4>
+        <p class="text-muted">Keeping it simple
+          We come together each day to fulfill a promise of offering the single most comprehensive 
+          travel experience to users, through award winning Mobile and Desktop solutions. With intuitive products that have the largest selection of flights, hotels and trains, we keep customers at the centre of everything we do.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Covid-19 Pandemic</h4>
+                        <h4 class="subheading">Check Before Plan Your Travel</h4>
+                        <p class="text-muted">The safety, security and good health of our passengers and employees is our highest priority.
+                          Nagarro  is working closely with global and national authorities to implement the latest advice and guidance on COVID-19 (coronavirus) and operate our services accordingly.  
+                          Like all organisation around the world, we have to balance the needs of our millions of passengers with the operational challenges we face due to entry restrictions imposed by a number of countries.</p>
+        </div>
+
+        <div class="col-md-6 how-img">
+            <img src="../../../assets/images/covid.jpg" class="rounded-circle img-fluid" alt=""/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 how-img">
+             <img src="../../../assets/images/covid2.jpg" class="rounded-circle img-fluid" alt=""/>
+        </div>
+        <div class="col-md-6">
+            <h4>Get Updates of Covid-19 </h4>
+                        <h4 class="subheading">Passengers are advised to check our real-time Flight Status page for the latest information.:</h4>
+                        <p class="text-muted">It acts as a portal for the public to keep track of the latest news development about the COVID-19, alongside collecting data for further analysis. All the contents are handpicked, filtered, and curated by volunteers to our best extent to ensure that sources are reliable with minimal hoaxes and fake news, in the best benefit of the public</p>
+                            <div>
+                              <a href="https://www.coronatracker.com/" class="btn btn-info" role="button">Click Here</a>
+                            </div>
+        </div>
+    </div>
+     
+</div>

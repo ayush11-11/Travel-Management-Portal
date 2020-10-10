@@ -1,0 +1,54 @@
+<div class="search-div">
+  <a  (click)="logout()"  class="btn btn-primary">Logout</a>
+   
+  <mat-form-field class="search-form-field" floatLabel="never" >
+    <input matInput [(ngModel)]="searchKey" id="search" placeholder="Search Here"   autocomplete="off" (keyup)="applyFilter()" >
+    <button mat-button matSuffix mat-icon-button aria-label="Clear"*ngIf="searchKey"  (click)="onSearchClear()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+</div>
+<div class="mat-elevation-z8">
+
+  <mat-table [dataSource]="listData"  matSort>
+
+    <ng-container matColumnDef="ticketId">
+      <mat-header-cell *matHeaderCellDef  mat-sort-header>ID</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.ticketId}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="priority">
+      <mat-header-cell *matHeaderCellDef  mat-sort-header>Priority</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.priority}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="upperBond">
+      <mat-header-cell *matHeaderCellDef  mat-sort-header>Ticket request</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.upperBond}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="projectName">
+      <mat-header-cell *matHeaderCellDef  mat-sort-header>Project Name</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.projectName}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef  mat-sort-header>Status</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.status}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-icon-button class="float-left info" (click)="changeStatus(row.ticketId)"> Change Status </button>
+        <button mat-icon-button class="float-right primary" (click)="showDetails(row.ticketId)">Show Details</button>
+      </mat-cell>
+    </ng-container>
+     
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="8" showFirstLastButtons></mat-paginator>
+  </div>

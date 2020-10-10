@@ -1,0 +1,134 @@
+ 
+<div class="container">
+  <div class="row justify-content-center" *ngIf="!error">
+    <div class="col-md-9">
+      <div class="jumbotron">
+        <h1>Request Ticket</h1>
+           
+          <form   (ngSubmit)="onSubmit()" [formGroup]="ticketForm">
+            <input type="hidden" formControlName="ticketId" class="form-control">
+            <input type="hidden" formControlName="status" class="form-control">
+            <div class="form-group form-row pt-10">
+              <label class="col-md-3"> Request Type<span class="required">*</span></label>
+              <div class="col-md-9">
+                <select formControlName="typeRequest" class ="form-control" placeholder="Choose Request Type">
+                    <option  *ngFor ="let count of requesttype"  >{{count}} </option>
+                </select>
+            </div>
+            </div>
+                
+            <div class="form-group form-row">
+              <label class="col-md-3">Priority <span class="required">*</span></label>
+              <div class="col-md-9">
+                <select formControlName="priority" class ="form-control" placeholder="Choose Request Type">
+                    <option  *ngFor ="let prio of priority"  >{{prio}} </option>
+                </select>
+            </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label class="col-md-3">Travel City <span class="required">*</span></label>
+              <div class="col-md-9">
+                <select formControlName="cityTravelTo" class ="form-control" placeholder="Choose Travel City">
+                    <option  *ngFor ="let c of city"  >{{c}} </option>
+                </select>
+            </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label class="col-md-3">From Location City <span class="required">*</span></label>
+              <div class="col-md-9">
+                <select formControlName="cityTravelFrom" class ="form-control" placeholder="Choose From Location City">
+                  <option  *ngFor ="let ct of city"  >{{ct}} </option>
+              </select>
+              </div>
+            </div>
+            <div class="form-group form-row">
+                <label class="col-md-3">Travel Start Date<span class="required">*</span></label>
+                <div class="col-md-9">
+                  <input type="date" formControlName="startDate" class="form-control" placeholder="Travel Start Date" required>
+                  <span *ngIf="!ticketForm.get('startDate').valid && ticketForm.get('startDate').touched && def">Please Choose Travel Start Date !!!</span>
+                </div>
+            </div>
+            <div class="form-group form-row">
+              <label class="col-md-3">Travel End Date<span class="required">*</span></label>
+              <div class="col-md-9">
+                <input type="date" formControlName="endtDate" class="form-control" placeholder="Travel End Date" required>
+                <span *ngIf="!ticketForm.get('endtDate').valid && ticketForm.get('endtDate').touched && def">Please Choose Travel End Date!!!</span>
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label class="col-md-3">Passport Number</label>
+              <div class="col-md-9">
+                <input type="text" formControlName="passport" class="form-control" placeholder="Passport Number" > 
+                <span *ngIf="!ticketForm.get('passport').valid && ticketForm.get('passport').touched && def">Please Passport Number!!!</span>
+              </div>
+            </div>
+                    
+            <div class="form-group form-row">
+              <label  class="col-md-3">Project Name<span class="required">*</span></label>
+              <div class="col-md-9">
+                <input type="text" formControlName="projectName" class="form-control" placeholder="Project Name" > 
+                <span *ngIf="!ticketForm.get('projectName').valid && ticketForm.get('projectName').touched && def">Please Project Name!!!</span>
+              </div>
+            </div> 
+
+            <div class="form-group form-row">
+              <label  class="col-md-3">Expense Borne by:<span class="required">*</span></label>
+              <div class="col-md-9">
+                <input type="radio" formControlName="expenseBorne" value="Nagarro" > Nagarro
+                <input type="radio" formControlName="expenseBorne" value="Client"> Client
+                
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label class="col-md-3">Travel Approver Name - Manager/BU Head  <span class="required">*</span></label>
+              <div class="col-md-9">
+                <input type="text" formControlName="travelApproverBy" class="form-control" placeholder="Travel Approver Name" required>
+                <span *ngIf="!ticketForm.get('travelApproverBy').valid && ticketForm.get('travelApproverBy').touched && def">Please enter Travel Approver Name  !!!</span>
+              </div>
+            </div> 
+            <div class="form-group form-row">
+              <label class="col-md-3">Expected Duration of Travel </label>
+              <div class="col-md-9">
+                <input type="text" formControlName="expectedDuration" class="form-control" placeholder="Travel Approver Name" >
+              </div>
+            </div> 
+            <div class="form-group form-row">
+              <label class="col-md-3">Any Upper Bound On Allow Time </label>
+              <div class="col-md-9">
+                <input type="text" formControlName="upperBond" class="form-control" placeholder="Upper Bound" >
+              </div>
+            </div> 
+            <div class="form-group form-row">
+              <label class="col-md-3">Any Additional Details </label>
+              <div class="col-md-9">
+                <input type="text" formControlName="additionalDetails" class="form-control" placeholder="Any Additional Details" >
+              </div>
+            </div> 
+            
+            <div *ngIf="def" class="form-group">
+              <button type="submit" [disabled]="!ticketForm.valid"  (click)="onSubmitClick()" class="btn btn-primary">Submit Ticket</button>
+          </div>
+          <div *ngIf="submited" class="form-group row">
+            <div class="col-5">
+            <button type="button"  (click)="onUpdateClick()" class="btn btn-primary">Edit</button>
+            </div>
+            <div class="col-5">
+            <button type="button"  (click)="onPrintClick()" class="btn btn-primary">Print</button>
+            </div>
+             
+        </div>
+          </form>
+        </div>         
+      </div>
+    </div>  
+  </div>
+
+
+
+
+
+ 

@@ -1,0 +1,138 @@
+<div class="container">
+  <div class="row justify-content-center" *ngIf="!error">
+    <div class="col-md-6">
+      <div class="jumbotron">
+        <h1>User Registration</h1>
+          <div class="alert alert-success" *ngIf="datasaved">
+              {{massage1}}
+          </div>
+          <div class="alert alert-success" *ngIf="datasaved">
+            {{massage2}}
+        </div>
+          <form (ngSubmit)="onSubmit()" [formGroup]="regForm">
+            
+            <input type="hidden" formControlName="userId" class="form-control" >
+            <input type="hidden" formControlName="password" class="form-control" >
+            <input type="hidden"  class="form-control">
+            <div class="form-group form-row pt-10">
+              <label class="col-md-3">First Name : <span class="required">*</span></label>
+                <div class="col-md-9">
+                  <input type="text" formControlName="firstName" class="form-control" placeholder="First Name" required>
+                  <span *ngIf="!regForm.get('firstName').valid && regForm.get('firstName').touched && def">Please enter First Name !!!</span>
+                </div>
+            </div>
+                
+            <div class="form-group form-row">
+              <label class="col-md-3">Last Name : <span class="required">*</span></label>
+                <div class="col-md-9">
+                  <input type="text" formControlName="lastName" class="form-control" placeholder="Last Name" required>
+                  <span *ngIf="!regForm.get('lastName').valid && regForm.get('lastName').touched && def">Please enter Last Name !!!</span>
+                </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label class="col-md-3">Business Unit <span class="required">*</span></label>
+              <div class="col-md-9">
+                <input type="text" formControlName="businessUnit" class="form-control" placeholder="BusinessUnit" required>
+                <span *ngIf="!regForm.get('businessUnit').valid && regForm.get('businessUnit').touched && def">Please Business Unit !!!</span>
+              </div>
+            </div>
+            
+            <div class="form-group form-row">
+              <label class="col-md-3">Title <span class="required">*</span></label>
+              <div class="col-md-9">
+                <input type="text" formControlName="title" class="form-control" placeholder="Title" required>
+                <span *ngIf="!regForm.get('title').valid && regForm.get('title').touched && def">Please enter Title !!!</span>
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+                <label class="col-md-3">Email ID <span class="required">*</span></label>
+                <div class="col-md-9">
+                  <input type="text" formControlName="eMail" class="form-control" placeholder="Email Id" required>
+                  <span *ngIf="!regForm.get('eMail').valid && regForm.get('eMail').touched && def">Please enter Email !!!</span>
+                </div>
+            </div>
+
+            <div class="form-group form-row">
+                <label class="col-md-3">Telephone <span class="required">*</span></label>
+                <div class="col-md-9">
+                  <input type="text" formControlName="phone" class="form-control" placeholder="Telephone" required>
+                  <span *ngIf="!regForm.get('phone').valid && regForm.get('phone').touched && def">Please enter Telephone !!!</span>
+                </div>
+            </div>
+            <div class="form-group form-row">
+              <label class="col-md-3">Address 1 <span class="required">*</span></label>
+              <div class="col-md-9">
+                <input type="text" formControlName="addressOne" class="form-control" placeholder="Address1" required>
+                <span *ngIf="!regForm.get('addressOne').valid && regForm.get('addressOne').touched && def">Please enter Address1 !!!</span>
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label class="col-md-3">Address 2</label>
+              <div class="col-md-9">
+                <input type="text" formControlName="addressTwo" class="form-control" placeholder="Address 2" > 
+              </div>
+            </div>
+                    
+            <div class="form-group form-row">
+              <label  class="col-md-3">Country<span class="required">*</span></label>
+              <div class="col-md-9">
+                  <select formControlName="country"  class ="form-control" placeholder="Choose Country" (change)="changeCountry($event.target.value)">
+                      <option  *ngFor ="let count of Country">{{count.name}} </option>
+                  </select>
+              </div>
+            </div> 
+
+            <div class="form-group form-row">
+              <label  class="col-md-3">State<span class="required">*</span></label>
+              <div class="col-md-9">
+                  <select formControlName="state" class ="form-control"  placeholder="Anycity">
+                      <option  *ngFor ="let state of State">{{state}} </option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label class="col-md-3">ZIP <span class="required">*</span></label>
+              <div class="col-md-9">
+                <input type="text" formControlName="zip" class="form-control" placeholder="ZIP" required>
+                <span *ngIf="!regForm.get('zip').valid && regForm.get('zip').touched && def">Please enter ZIP  !!!</span>
+              </div>
+            </div> 
+
+            <div class="form-group form-row">
+              <label class="col-md-3">City <span class="required">*</span></label>
+              <div class="col-md-9">
+                <input type="text" formControlName="city" class="form-control" placeholder="City" required>
+                <span *ngIf="!regForm.get('city').valid && regForm.get('city').touched && def">Please enter City  !!!</span>
+              </div>
+            </div> 
+            
+            <div *ngIf="def" class="form-group">
+                <button type="submit" [disabled]="!regForm.valid" (click)="onSubmitClick()" class="btn btn-primary">Submit</button>
+            </div>
+            <div *ngIf="submited" class="form-group row">
+              <div class="col-3">
+              <button type="button"  (click)="onUpdateClick()" class="btn btn-primary">Edit</button>
+              </div>
+              <div class="col-3">
+              <button type="button"  (click)="onPrintClick()" class="btn btn-primary">Print</button>
+              </div>
+              <div class="col-3">
+              <button type="button"  (click)="onHomepageClick()" class="btn btn-primary">Homepage</button>
+          </div>
+          </div>
+
+          </form>
+        </div>         
+      </div>
+    </div>  
+  </div>
+
+
+
+
+
+ 

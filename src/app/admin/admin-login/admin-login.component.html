@@ -1,0 +1,32 @@
+<div class="container justify-content-center col-6">
+<div class="jumbotron mt-10">
+<h2>Admin Login</h2>
+<div class="alert alert-danger" *ngIf="Error">
+  {{massage}}
+</div>
+  
+<form (ngSubmit)="onSubmit()" [formGroup]="adminForm"  >
+  
+    <div class="form-group">
+        <label for="adminName">Admin name</label>
+        <input type="text" formControlName="adminName" class="form-control"   />
+        <span *ngIf="!adminForm.get('adminName').valid && adminForm.get('adminName').touched">Please enter Name !!!</span>   
+    </div>
+    
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" formControlName="password" class="form-control"   />
+        <span *ngIf="!adminForm.get('password').valid && adminForm.get('password').touched">Please enter Password !!!</span>
+    </div>
+         
+        
+    <div class="form-group">
+        <button  [disabled]="!adminForm.valid" class="btn btn-primary"> Login</button>
+    </div>   
+
+  </form>
+  </div>
+  </div>
+  
+
+
